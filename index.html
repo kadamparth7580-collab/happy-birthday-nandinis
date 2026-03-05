@@ -1,106 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Nandini 💗</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>For Nandini 💜</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ffe0f0, #e8d6ff);
-    text-align: center;
-    overflow-x: hidden;
-    color: #444;
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    color:white;
+    font-family:Poppins, sans-serif;
+    overflow:hidden;
+    opacity:0;
+    transition:opacity 1.5s ease;
 }
-section { padding: 80px 20px; }
-h1 { font-size: 3em; margin-top: 120px; }
-.memory {
-    background: white;
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+body.loaded{
+    opacity:1;
 }
-.gallery img {
-    width: 220px;
-    height: 260px;
-    object-fit: cover;
-    margin: 15px;
-    border-radius: 20px;
+
+#intro{
+    text-align:center;
 }
-.letter {
-    background: white;
-    max-width: 750px;
-    margin: auto;
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    font-size: 1.15em;
-    line-height: 1.9em;
+
+h1{
+    font-size:3em;
+    letter-spacing:3px;
+    animation:glow 2s ease-in-out infinite alternate;
 }
-button {
-    padding: 15px 35px;
-    border-radius: 30px;
-    border: none;
-    background: #ff9ccf;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-    margin-top: 40px;
+
+@keyframes glow{
+    from{text-shadow:0 0 10px #b57edc;}
+    to{text-shadow:0 0 25px #d8b4f8;}
+}
+
+button{
+    padding:15px 40px;
+    border:none;
+    border-radius:30px;
+    background:#b57edc;
+    color:white;
+    font-size:1em;
+    cursor:pointer;
+    margin-top:30px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #b57edc;
 }
 </style>
 </head>
 
 <body>
 
-<section>
-    <h1>Happy Birthday Nandini 💗</h1>
-    <p>15th March — The day the world got softer 🌸</p>
-</section>
+<div id="intro">
+    <h1>For Someone Very Special 💜</h1>
+    <button onclick="enter()">Enter</button>
+</div>
 
-<section>
-    <h2>Our Little Universe ✨</h2>
-    <div class="memory">The way we laugh at things nobody else understands.</div>
-    <div class="memory">Those late night talks where time didn’t exist.</div>
-    <div class="memory">Your bold side protecting your soft heart.</div>
-</section>
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
 
-<section>
-    <h2>Moments That Matter 📸</h2>
-    <div class="gallery">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-    </div>
-</section>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+    document.body.classList.add("loaded");
+});
 
-<section>
-    <h2>Something I Need To Say 💌</h2>
-    <div class="letter">
-        Nandini,
+function enter(){
+    const music=document.getElementById("music");
 
-        I don’t think you truly realize how special you are.
-        You make things lighter just by being there.
-        You care deeply, you protect strongly,
-        and you balance softness and boldness so beautifully.
+    music.play().then(()=>{
+        localStorage.setItem("music","on");
 
-        I’m really grateful for you.
-        And I always will be.
+        document.body.style.opacity="0";
 
-        Happy Birthday 💗
-    </div>
-</section>
+        setTimeout(()=>{
+            window.location="memories.html";
+        },1000);
 
-<section>
-    <button onclick="alert('I’m always on your side. Always. 💖')">
-        One Last Thing 💝
-    </button>
-</section>
+    }).catch(()=>{
+        alert("Tap again to start the music 💜");
+    });
+}
+</script>
 
 </body>
 </html>
