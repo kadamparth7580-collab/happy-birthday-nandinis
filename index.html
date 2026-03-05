@@ -34,7 +34,7 @@ h1{
 
 @keyframes glow{
     from{text-shadow:0 0 10px #b57edc;}
-    to{text-shadow:0 0 25px #d8b4f8;}
+    to{text-shadow:0 0 30px #d8b4f8;}
 }
 
 button{
@@ -68,27 +68,29 @@ button:hover{
 </audio>
 
 <script>
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded",function(){
     document.body.classList.add("loaded");
 });
 
 function enter(){
+
+    // Start music (ignore autoplay errors safely)
     const music=document.getElementById("music");
+    music.play().catch(function(){});
 
-    music.play().then(()=>{
-        localStorage.setItem("music","on");
+    // Save state for next pages
+    localStorage.setItem("music","on");
 
-        document.body.style.opacity="0";
+    // Fade out
+    document.body.style.opacity="0";
 
-        setTimeout(()=>{
-            window.location="memories.html";
-        },1000);
-
-    }).catch(()=>{
-        alert("Tap again to start the music 💜");
-    });
+    // Go to next page
+    setTimeout(function(){
+        window.location.href="memories.html";
+    },800);
 }
 </script>
 
 </body>
 </html>
+
